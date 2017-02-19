@@ -65,8 +65,8 @@ To be added....
 ## Authors
 
 * **Ahmed Fouzan** - [GitHUB](https://github.com/ahmedfouzan)
-* **Mohammed Imran** - [GitHUB](https://github.com/ahmedfouzan)
-* **Heerak Agrawal** - [GitHUB](https://github.com/ahmedfouzan)
+* **Mohammed Imran** - [LinkedIn](https://www.linkedin.com/in/mohammed-imran-279262122/)
+* **Heerak Agrawal** - [LinkedIn](https://www.linkedin.com/in/heerak-agrawal-76a939122/)
 
 ## License
 

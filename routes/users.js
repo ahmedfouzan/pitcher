@@ -25,7 +25,7 @@ router.post('/register', function(req, res){
 
                 // Store in the database
                 session
-                    .run("CREATE (n:Person {username:{username},password:{password},name:{name},email:{email},gender:{gender},dob:{dob}}) RETURN n",newUser)
+                    .run("CREATE (n:USER {username:{username},password:{password},name:{name},email:{email},gender:{gender},dob:{dob}}) RETURN n",newUser)
                     .subscribe({
                         onNext: function(record) {
                             res.json({success: true, msg: 'User registered', properties: record._fields[0].properties});
@@ -35,7 +35,7 @@ router.post('/register', function(req, res){
                             session.close();
                         },
                         onError: function(error) {
-                            console.log(error);
+                            res.json({success: false, msg: 'Failed to register user'});
                         }
                     });
         });
