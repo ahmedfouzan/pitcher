@@ -18,5 +18,5 @@
     "jsonwebtoken": "*"
   },
   "author": "Ahmed Fouzan, Mohammed Imran, Heerak Agrawal",
-  "license": "ISC"
+  "license": "MIT"
 }
