@@ -1,0 +1,22 @@
+{
+  "name": "pitcher",
+  "version": "1.0.0",
+  "description": "An image sharing web application, with additional features like video sharing, live video streaming, chat.\u001b[Dting",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "*",
+    "body-parser": "*",
+    "neo4j-driver": "*",
+    "passport": "*",
+    "passport-jwt": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*"
+  },
+  "author": "Ahmed Fouzan, Mohammed Imran, Heerak Agrawal",
+  "license": "ISC"
+}
