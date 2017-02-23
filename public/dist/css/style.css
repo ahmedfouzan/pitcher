@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.loadPage {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1000;
+    background-color: #3F9AA3;
+}
+.loadPageInner {
+    position: absolute;
+    left     : 50%;
+    top      : 50%;
+}
+.sidebar {
+    background-color: #3F9AA3;
+}

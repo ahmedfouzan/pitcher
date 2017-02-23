@@ -15,7 +15,8 @@
     "passport-jwt": "*",
     "bcryptjs": "*",
     "cors": "*",
-    "jsonwebtoken": "*"
+    "jsonwebtoken": "*",
+	"request": "*"
   },
   "author": "Ahmed Fouzan, Mohammed Imran, Heerak Agrawal",
   "license": "MIT"

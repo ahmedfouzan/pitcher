@@ -1,11 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const bcrypt = require('bcryptjs');
-const database = require('../config/database');
-
-// Register session
-const session = database.getSession();
+const User = require('../models/user');
 
 // Register user
 router.post('/register', function(req, res){
@@ -18,29 +14,28 @@ router.post('/register', function(req, res){
         dob: req.body.dob
      }
 
-    bcrypt.genSalt(10, function(err, salt){
-        bcrypt.hash(newUser.password, salt, function(err, hash){
-                if(err) throw err;
-                newUser.password = hash;
-
-                // Store in the database
-                session
-                    .run("CREATE (n:USER {username:{username},password:{password},name:{name},email:{email},gender:{gender},dob:{dob}}) RETURN n",newUser)
-                    .subscribe({
-                        onNext: function(record) {
-                            res.json({success: true, msg: 'User registered', properties: record._fields[0].properties});
-                        },
-                        onCompleted: function() {
-                            // Completed
-                            session.close();
-                        },
-                        onError: function(error) {
-                            res.json({success: false, msg: 'Failed to register user'});
-                        }
-                    });
-        });
+    User.addUser(newUser, function(user){
+        if(!user)
+            return res.json({success: false, msg: 'User already exists or Couldn\'t createthe user' });
+        return res.json({success: true, msg: "User registered", properties: user._fields[0].properties})
     });
 
+});
+
+// Authenticate
+router.post('/authenticate', function(req, res){
+
+    const username = req.body.username;
+    const password = req.body.password;
+
+    User.getUserByUsername(username, function(err, user){
+        if(err)
+            throw err;
+        if(!user)
+            return res.json({success: false, msg: 'User not found'});
+        return res.json({success: false, msg: "User found"})
+        //User.comparePassword()
+    });
 });
 
 module.exports = router;

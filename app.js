@@ -14,6 +14,9 @@ const port = 3000;
 // CORS Middleware
 app.use(cors());
 
+// Set static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Body parser Middleware
 app.use(bodyParser.json());
 
@@ -22,8 +25,7 @@ app.use('/users',users);
 
 // Index Route
 app.get('/', function(req, res){
-    res.send("Hello World");
-    console.log('Request...');
+    res.sendFile(index.html);
 });
 
 // Start server
