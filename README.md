@@ -12,8 +12,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software
 
-* NodeJS - [Download](https://nodejs.org/)
-* Neo4j - [Download](https://neo4j.com/)
+* [NodeJS](https://nodejs.org/)
+* [Neo4j](https://neo4j.com/)
+* [EmberJS](https://neo4j.com/)
 
 ### Installing
 
