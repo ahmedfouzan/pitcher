@@ -57,7 +57,7 @@ POST /users/authenticate   // Gives a token
 * Go to a protected route
 
 ```
-POST /users/profile   // Requires token to authorize
+GET /users/profile   // Requires token to authorize
 ```
 
 ## Built With
