@@ -1,56 +1,63 @@
 # Pitcher
 
-Version 1.0
+An image sharing web application, with additional features like video sharing, live video streaming, chat.
 
-An image sharing web application, with additional features like video sharing, live video streaming, chat
+### Version
+1.0.0
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-What things you need to install the software
+## Prerequisites
 
 * [NodeJS](https://nodejs.org/)
 * [Neo4j](https://neo4j.com/)
-* [EmberJS](https://neo4j.com/)
 
-### Installing
+## Installation
 
-A step by step series of examples that tell you have to get a development env running
+Clone this repository
 
-Clone this project 
-
-```
+```bash
 git clone https://github.com/ahmedfouzan/pitcher.git
 ```
 
-Execute the following commands
-```
+Change into the directory
+
+```bash
 cd pitcher
+```
+
+Install the dependencies
+
+```bash
 npm install
 ```
 
+### Running
 
-## Running the tests
+Run the app
 
-
-
-### Run the application
-
-Run the app on node server
-
-```
-node app.js
+```bash
+npm start
 ```
 
 ### End Points
 
 Using the following endpoints you can
 
+* Register a user
+
 ```
-POST /users/register	// Register a user
+POST /users/register
+```
+
+* Login
+
+```
+POST /users/authenticate   // Gives a token
+```
+
+* Requires token to authorize
+
+```
+POST /users/profile
 ```
 
 ## Deployment
@@ -61,14 +68,14 @@ To be added....
 
 * Serverside - [NodeJS](https://nodejs.org/), [ExpressJS](http://expressjs.com/)
 * Database - [Neo4j](https://neo4j.com/)
-* Frontend - [Bootstrap](https://getbootstrap.com/), [JQuery](https://jquery.com/), [BackboneJS](http://backbonejs.org/)
+* Frontend - [Bootstrap](https://getbootstrap.com/), [JQuery](https://jquery.com/), [AngularJS](http://angularjs.org/)
 
 ## Authors
 
-* **Ahmed Fouzan** - [GitHUB](https://github.com/ahmedfouzan)
-* **Mohammed Imran** - [LinkedIn](https://www.linkedin.com/in/mohammed-imran-279262122/)
-* **Heerak Agrawal** - [LinkedIn](https://www.linkedin.com/in/heerak-agrawal-76a939122/)
+* [**Ahmed Fouzan**](https://github.com/ahmedfouzan)
+* [**Mohammed Imran**](https://github.com/imran-14)
+* [**Heerak Agrawal**](https://github.com/heerak23)
 
 ## License
 
-This project is licensed under the MIT License
+[MIT](http://opensource.org/licenses/MIT)
