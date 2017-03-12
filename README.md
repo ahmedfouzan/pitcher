@@ -38,7 +38,7 @@ Run the app
 npm start
 ```
 
-### End Points
+## End Points
 
 Using the following endpoints you can
 
@@ -54,15 +54,11 @@ POST /users/register
 POST /users/authenticate   // Gives a token
 ```
 
-* Requires token to authorize
+* Go to a protected route
 
 ```
-POST /users/profile
+POST /users/profile   // Requires token to authorize
 ```
-
-## Deployment
-
-To be added....
 
 ## Built With
 
