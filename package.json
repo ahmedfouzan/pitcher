@@ -4,7 +4,6 @@
   "description": "An image sharing web application, with additional features like video sharing, live video streaming, chat.\u001b[Dting",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
   "dependencies": {

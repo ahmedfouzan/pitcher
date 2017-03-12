@@ -9,7 +9,7 @@ const app = express();
 const users = require('./routes/users');
 
 // Port number
-const port = process.env.PORT || 3000;
+app.set('port',process.env.PORT || 3000);
 
 // CORS Middleware
 app.use(cors());
@@ -35,7 +35,7 @@ app.get('/', function(req, res){
 });
 
 // Start server
-app.listen(port, function(err){
+app.listen(app.get('port'), function(err){
     if(err) throw err;
-    console.log("Server started on port " + port);
+    console.log("Server started on port " + app.get('port'));
 });
