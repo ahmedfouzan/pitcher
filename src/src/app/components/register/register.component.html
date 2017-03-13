@@ -2,11 +2,17 @@
 <form (submit)="onRegisterSubmit()" >
   <div class="form-group">
     <label>Username</label>
-    <input type="text" [(ngModel)]="username" name="username" class="form-control" placeholder="Username" required>
+    <input type="text" [(ngModel)]="username" name="username" (keyup)="checkUsername($event)" (blur)="checkUsername($event)" class="form-control" placeholder="Username" required>
+    <span id="username-glyphicon" class=""></span>
   </div>
   <div class="form-group">
     <label>Password</label>
     <input type="password" [(ngModel)]="password" name="password" class="form-control" placeholder="Password" required>
+  </div>
+  <div class="form-group">
+    <label>Confirm Password</label>
+    <input type="password" [(ngModel)]="cpassword" name="cpassword" (keyup)="confirmPassword($event)" class="form-control" placeholder="Confirm Password" required>
+    <span id="cpassword-glyphicon" class=""></span>
   </div>
   <div class="form-group">
     <label>Name</label>
@@ -25,9 +31,8 @@
     </select>
   </div>
   <div class="form-group">
-    <label>DOB</label>
-  <!--  <input type="date" [(ngModel)]="dob" name="dob" class="form-control" required>--><br>
-    <my-date-picker name="dob" [options]="myDatePickerOptions" [(ngModel)]="dob" required></my-date-picker>
+    <label>DOB</label><br>
+    <my-date-picker name="dob" [options]="myDatePickerOptions" [placeholder]="placeholder" [(ngModel)]="dob"></my-date-picker>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

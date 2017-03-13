@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
+import { AuthService } from '../../services/auth.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
-import { IMyOptions, IMyDate, IMyDateModel } from 'mydatepicker';
+import { IMyOptions, IMyDate, IMyDateModel, IMyInputFieldChanged } from 'mydatepicker';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -16,16 +18,28 @@ export class RegisterComponent implements OnInit {
   username: String;
   email: String;
   password: String;
+  cpassword: String;
   gender: String;
-  dob: Object = {date: {year: this.d.getFullYear(), month: this.d.getMonth() + 1, day: this.d.getDate()-1}};
-
+  dob: IMyDateModel
+  
   private myDatePickerOptions: IMyOptions = {
-        dateFormat: 'dd/mm/yyyy',
-        inline: false,
-        disableSince: {year: this.d.getFullYear(), month: this.d.getMonth() + 1, day: this.d.getDate()}
-    };
+    dateFormat: 'dd/mm/yyyy',
+    width: '210px',
+    inline: false,
+    selectionTxtFontSize: '16px',
+    inputValueRequired: true,
+    minYear: 1901,
+    disableSince: {year: this.d.getFullYear(), month: this.d.getMonth() + 1, day: this.d.getDate()}
+  };
 
-  constructor(private validateService: ValidateService, private flashMessage: FlashMessagesService) {
+  private placeholder: string = 'Select a date';
+
+  constructor(
+    private validateService: ValidateService,
+    private flashMessage: FlashMessagesService,
+    private authService: AuthService,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
@@ -38,13 +52,24 @@ export class RegisterComponent implements OnInit {
       name: this.name,
       email: this.email,
       gender: this.gender,
-      dob: this.dob
+      dob: this.dob.formatted
     }
-    console.log(user);
 
     //Required fields
     if(!this.validateService.validateRegister(user)){
       this.flashMessage.show('Please fill in all fields', {cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    }
+
+    // Check username unavailabilitiy
+    if(this.checkUsername(null)){
+      this.flashMessage.show('Username unavailable', {cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    }
+
+    // Validate password
+    if(!this.validateService.confirmPassword(this.password, this.cpassword)){
+      this.flashMessage.show('Passwords don\'t match', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
 
@@ -55,11 +80,68 @@ export class RegisterComponent implements OnInit {
     }
 
     // Validate dob
-    if(!this.dob){
+    if(!user.dob){
       this.flashMessage.show('Please enter a valid date', {cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
-    
+
+    // Register user
+    this.authService.registerUser(user).subscribe(data => {
+      if(data.success){
+        this.flashMessage.show('Successfully registered', {cssClass: 'alert-success', timeout: 3000});
+        console.log(data.msg);
+        this.router.navigate(['/login']);
+      }else {
+        this.flashMessage.show('Couldn\'t register' , {cssClass: 'alert-danger', timeout: 3000});
+        console.log(data.msg);
+        this.router.navigate(['/register']);
+      }
+    });
+  }
+
+  checkUsername(event){
+
+    if(this.username == ""){
+          event.target.parentElement.className = 'form-group';
+          document.getElementById('username-glyphicon').className = '';
+    }else{
+      // Check username
+      this.authService.checkUsername(this.username).subscribe(data => {
+        console.log(data);
+        if(data.success){
+          if(event != null){
+            event.target.parentElement.className = 'form-group has-success has-feedback';
+            document.getElementById('username-glyphicon').className = 'glyphicon glyphicon-ok form-control-feedback';
+          }
+          console.log(data.success);
+          return true;
+        }else {
+          if(event != null){
+            event.target.parentElement.className = 'form-group has-error has-feedback';
+            document.getElementById('username-glyphicon').className = 'glyphicon glyphicon-remove form-control-feedback';
+          }
+        }
+      });
+    }
+    return false;
+  
+  }
+
+  confirmPassword(event){
+
+    if(this.cpassword == ""){
+        event.target.parentElement.className = 'form-group';
+        document.getElementById('cpassword-glyphicon').className = '';
+    }else{
+      if(this.validateService.confirmPassword(this.password, this.cpassword)){
+          event.target.parentElement.className = 'form-group has-success has-feedback';
+          document.getElementById('cpassword-glyphicon').className = 'glyphicon glyphicon-ok form-control-feedback';
+        }else {
+          event.target.parentElement.className = 'form-group has-error has-feedback';
+          document.getElementById('cpassword-glyphicon').className = 'glyphicon glyphicon-remove form-control-feedback';
+        }
+    }
+  
   }
 
 

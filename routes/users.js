@@ -5,6 +5,18 @@ const User = require('../models/user');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 
+// Check if username is available
+router.get('/checkusername', function(req, res, next){
+    const username = req.query.username;
+    
+    User.getUserByUsername(username, function(err, username){
+        if(!username)
+            return res.json({success: true, msg: 'Username available'});
+
+        return res.json({success: false, msg: 'Username unavailable'});
+    });
+});
+
 // Register user
 router.post('/register', function(req, res){
      let newUser = {
@@ -15,7 +27,6 @@ router.post('/register', function(req, res){
         gender: req.body.gender,
         dob: req.body.dob
      }
-
     User.addUser(newUser, function(err, user){
         if(err)
             if(!user)
