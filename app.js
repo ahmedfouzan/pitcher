@@ -34,6 +34,10 @@ app.get('/', function(req, res){
     res.sendFile(index.html);
 });
 
+app.get('*', function(req, res){
+    res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
 // Start server
 app.listen(app.get('port'), function(err){
     if(err) throw err;
