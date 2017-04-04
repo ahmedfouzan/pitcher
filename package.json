@@ -6,17 +6,34 @@
   "scripts": {
     "start": "node app.js"
   },
-  "dependencies": {
-    "express": "*",
-    "body-parser": "*",
-    "neo4j-driver": "*",
-    "passport": "*",
-    "passport-jwt": "*",
-    "bcryptjs": "*",
-    "cors": "*",
-    "jsonwebtoken": "*",
-	"request": "*"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ahmedfouzan/pitcher.git"
   },
-  "author": "Ahmed Fouzan, Mohammed Imran, Heerak Agrawal",
+  "keywords": [
+    "single page",
+    "single page application",
+    "application",
+    "image sharing",
+    "image sharing application",
+    "api",
+    "restful"
+  ],
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "jsonwebtoken": "^7.3.0",
+    "neo4j-driver": "^1.2.0",
+    "passport": "^0.3.2",
+    "passport-jwt": "^2.2.1",
+    "request": "^2.81.0"
+  },
+  "authors": [
+	"Ahmed Fouzan <ahmedfouzan@gmail.com> (https://github.com/ahmedfouzan)",
+	"Mohammed Imran <imran4nov@gmail.com> (https://github.com/imran-14)",
+	"Heerak Agrawal <heerak.agrawal@gmail.com> (https://github.com/heerak23)"
+  ],
   "license": "MIT"
 }

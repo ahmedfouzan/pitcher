@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service';
-import { FlashMessagesService } from 'angular2-flash-messages';
 import { IMyOptions, IMyDate, IMyDateModel, IMyInputFieldChanged } from 'mydatepicker';
 import { Router } from '@angular/router';
 
@@ -36,7 +35,6 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private validateService: ValidateService,
-    private flashMessage: FlashMessagesService,
     private authService: AuthService,
     private router: Router
   ) {
@@ -57,42 +55,47 @@ export class RegisterComponent implements OnInit {
 
     //Required fields
     if(!this.validateService.validateRegister(user)){
-      this.flashMessage.show('Please fill in all fields', {cssClass: 'alert-danger', timeout: 3000});
+     /* this.flashMessage.show('Please fill in all fields', {cssClass: 'alert-danger', timeout: 3000});*/
+     console.log("Please fill in all the fields");
       return false;
     }
 
     // Check username unavailabilitiy
     if(this.checkUsername(null)){
-      this.flashMessage.show('Username unavailable', {cssClass: 'alert-danger', timeout: 3000});
+      /*this.flashMessage.show('Username unavailable', {cssClass: 'alert-danger', timeout: 3000});*/
+      console.log("Username unavailable");
       return false;
     }
 
     // Validate password
     if(!this.validateService.confirmPassword(this.password, this.cpassword)){
-      this.flashMessage.show('Passwords don\'t match', {cssClass: 'alert-danger', timeout: 3000});
+     /* this.flashMessage.show('Passwords don\'t match', {cssClass: 'alert-danger', timeout: 3000});*/
+     console.log("Passwords don't match");
       return false;
     }
 
     // Validate email
     if(!this.validateService.validateEmail(user.email)){
-      this.flashMessage.show('Please enter a valid email', {cssClass: 'alert-danger', timeout: 3000});
+      /*this.flashMessage.show('Please enter a valid email', {cssClass: 'alert-danger', timeout: 3000});*/
+      console.log("Please enter a valid email");
       return false;
     }
 
     // Validate dob
     if(!user.dob){
-      this.flashMessage.show('Please enter a valid date', {cssClass: 'alert-danger', timeout: 3000});
+      /*this.flashMessage.show('Please enter a valid date', {cssClass: 'alert-danger', timeout: 3000});*/
+      console.log("Please enter a valid date");
       return false;
     }
 
     // Register user
     this.authService.registerUser(user).subscribe(data => {
       if(data.success){
-        this.flashMessage.show('Successfully registered', {cssClass: 'alert-success', timeout: 3000});
+        /*this.flashMessage.show('Successfully registered', {cssClass: 'alert-success', timeout: 3000});*/
         console.log(data.msg);
         this.router.navigate(['/login']);
       }else {
-        this.flashMessage.show('Couldn\'t register' , {cssClass: 'alert-danger', timeout: 3000});
+       /* this.flashMessage.show('Couldn\'t register' , {cssClass: 'alert-danger', timeout: 3000});*/
         console.log(data.msg);
         this.router.navigate(['/register']);
       }

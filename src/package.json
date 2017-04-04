@@ -20,7 +20,6 @@
     "@angular/platform-browser": "^2.4.0",
     "@angular/platform-browser-dynamic": "^2.4.0",
     "@angular/router": "^3.4.0",
-    "angular2-flash-messages": "^1.0.5",
     "angular2-jwt": "^0.1.28",
     "core-js": "^2.4.1",
     "mydatepicker": "^1.7.6",

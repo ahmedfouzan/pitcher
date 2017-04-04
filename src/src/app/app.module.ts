@@ -14,7 +14,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
-import { FlashMessagesModule } from 'angular2-flash-messages';
 import { MyDatePickerModule } from 'mydatepicker';
 import { AuthGuard } from './guards/auth.guard';
 
@@ -41,7 +40,6 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    FlashMessagesModule,
     MyDatePickerModule
   ],
   providers: [
