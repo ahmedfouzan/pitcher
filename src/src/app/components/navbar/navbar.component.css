@@ -1,0 +1,14 @@
+ .my-glyphicon {
+     font-size:32px;
+ }
+ .navbar-brand>img {
+ /*  max-height: 100%;
+*/   height: 30px;
+   width: auto;
+   margin: 0 auto;
+
+
+   /* probably not needed anymore, but doesn't hurt */
+   -o-object-fit: contain;
+   object-fit: contain; 
+ }
